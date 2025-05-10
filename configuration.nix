@@ -103,10 +103,14 @@
     bitwarden-desktop
     gnomeExtensions.forge
     pkgs.docker
+
+    # VSCode + extensions
     (vscode-with-extensions.override {
     vscodeExtensions = with vscode-extensions; [
       bbenoist.nix
       pkief.material-icon-theme
+      rust-lang.rust-analyzer
+      golang.go
     ];
   })
   ];
