@@ -101,7 +101,6 @@
   environment.systemPackages = with pkgs; [
     vscode
     firefox
-    git
     bitwarden-desktop
     gnomeExtensions.forge
     pkgs.docker
@@ -120,6 +119,14 @@
 	        "git"
           "docker"
         ];
+      };
+    };
+    git = {
+      enable = true;
+      config = {
+        init = { defaultBranch = "main"; };
+        user.name  = "Tuukka Viitanen";
+        user.email = "tuukka.viitanen@gmail.com";
       };
     };
   };
