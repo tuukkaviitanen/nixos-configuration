@@ -100,6 +100,7 @@
     brave
     bitwarden-desktop
     pkgs.docker
+    pkgs.discord
 
     # Gnome extensions
     pkgs.gnomeExtensions.blur-my-shell
