@@ -84,7 +84,7 @@
   users.users.tuukka = {
     isNormalUser = true;
     description = "Tuukka Viitanen";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -99,7 +99,6 @@
     # Applications
     brave
     bitwarden-desktop
-    pkgs.docker
     pkgs.discord
 
     # Gnome extensions
@@ -141,6 +140,8 @@
   };
 
   users.defaultUserShell = pkgs.zsh;
+
+  virtualisation.docker.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
