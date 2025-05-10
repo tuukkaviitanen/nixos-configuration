@@ -90,19 +90,20 @@
     ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # Applications
     brave
     bitwarden-desktop
-    gnomeExtensions.forge
     pkgs.docker
+
+    # Gnome extensions
+    pkgs.gnomeExtensions.blur-my-shell
+    pkgs.gnomeExtensions.dash-to-panel
 
     # VSCode + extensions
     (vscode-with-extensions.override {
