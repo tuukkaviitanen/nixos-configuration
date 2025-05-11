@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./home.nix
     ];
 
   # Bootloader.
@@ -85,16 +86,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.tuukka = {
-    isNormalUser = true;
-    description = "Tuukka Viitanen";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
-  };
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -108,43 +99,9 @@
 
     # Gnome extensions
     pkgs.gnomeExtensions.blur-my-shell
-    pkgs.gnomeExtensions.dash-to-panel
+    pkgs.gnomeExtensions.dash-to-panel  
 
-    # VSCode + extensions
-    (vscode-with-extensions.override {
-    vscodeExtensions = with vscode-extensions; [
-      bbenoist.nix
-      pkief.material-icon-theme
-      rust-lang.rust-analyzer
-      golang.go
-    ];
-  })
   ];
-
-  programs = {
-    zsh = {
-      enable = true;
-      autosuggestions.enable = true;
-      syntaxHighlighting.enable = true;
-      ohMyZsh = {
-        enable = true;
-        plugins = [
-	        "git"
-          "docker"
-        ];
-      };
-    };
-    git = {
-      enable = true;
-      config = {
-        init = { defaultBranch = "main"; };
-        user.name  = "Tuukka Viitanen";
-        user.email = "tuukka.viitanen@gmail.com";
-      };
-    };
-  };
-
-  users.defaultUserShell = pkgs.zsh;
 
   virtualisation.docker.enable = true;
 
