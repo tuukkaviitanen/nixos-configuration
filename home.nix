@@ -9,7 +9,7 @@ in
       (import "${home-manager}/nixos")
     ];
 
-  # Use global Nix package configurations (including unfree)
+  # Use global Nix package configurations (including unfree packages)
   home-manager.useGlobalPkgs = true;
 
   programs = {
@@ -17,8 +17,12 @@ in
       enable = true;
       autosuggestions.enable = true;
       syntaxHighlighting.enable = true;
+      shellAliases = {
+        rebuild = "sudo nixos-rebuild switch";
+      };
       ohMyZsh = {
         enable = true;
+        theme = "robbyrussell";
         plugins = [
 	        "git"
           "docker"
@@ -45,19 +49,21 @@ in
     # originally installed.
     home.stateVersion = "24.11";
 
-    programs.git = {
-        enable = true;
-        userName  = "tuukkaviitanen";
-        userEmail = "tuukka.viitanen@gmail.com";
-    };
+    programs = {
+      git = {
+          enable = true;
+          userName  = "tuukkaviitanen";
+          userEmail = "tuukka.viitanen@gmail.com";
+      };
 
-    programs.vscode = {
-        enable = true;
-        package = pkgs.vscode;
-        extensions = with pkgs.vscode-extensions; [
-          bbenoist.nix
-          pkief.material-icon-theme
-        ];
+      vscode = {
+          enable = true;
+          package = pkgs.vscode;
+          extensions = with pkgs.vscode-extensions; [
+            bbenoist.nix
+            pkief.material-icon-theme
+          ];
+      };
     };
 
     dconf.settings."org/gnome/desktop/wm/preferences".button-layout = ":minimize,maximize,close";
