@@ -18,7 +18,8 @@ in
       autosuggestions.enable = true;
       syntaxHighlighting.enable = true;
       shellAliases = {
-        rebuild = "sudo nixos-rebuild switch";
+        r = "sudo nixos-rebuild switch";
+        ru = "sudo nix-channel --update && sudo nixos-rebuild switch --upgrade";
       };
       ohMyZsh = {
         enable = true;
@@ -30,6 +31,7 @@ in
       };
     };
     dconf.enable = true; # Enables dconf configuration in home.nix
+    direnv.enable = true;
   };
 
 

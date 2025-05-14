@@ -95,7 +95,7 @@
     # Applications
     brave
     bitwarden-desktop
-    pkgs.discord
+    discord
 
     # Gnome extensions
     pkgs.gnomeExtensions.blur-my-shell
