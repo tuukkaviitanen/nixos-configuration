@@ -15,6 +15,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+ nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Fix for speakers (but not mic)
   boot.extraModprobeConfig = ''
     options snd-intel-dspcfg dsp_driver=1
@@ -98,9 +100,17 @@
     discord
 
     # Gnome extensions
-    pkgs.gnomeExtensions.blur-my-shell
-    pkgs.gnomeExtensions.dash-to-panel  
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.dash-to-panel  
 
+    # VS Code
+    (vscode-with-extensions.override {
+    vscodeExtensions = with vscode-extensions; [
+      bbenoist.nix
+      pkief.material-icon-theme
+      rust-lang.rust-analyzer
+    ];
+  })
   ];
 
   virtualisation.docker.enable = true;
