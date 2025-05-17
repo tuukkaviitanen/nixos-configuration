@@ -19,6 +19,7 @@
         r = "sudo nixos-rebuild switch";
         ru = "sudo nix-channel --update && sudo nixos-rebuild switch --upgrade";
       };
+      shellInit = "fastfetch\n";
       ohMyZsh = {
         enable = true;
         theme = "robbyrussell";
