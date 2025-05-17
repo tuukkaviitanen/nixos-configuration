@@ -85,6 +85,7 @@
       "org/gnome/desktop/interface".show-battery-percentage = true;
       "org/gnome/shell" = {
         # By default, disabled extensions overwrite enabled ones
+        disable-user-extensions = false;
         disabled-extensions = [];
         # `gnome-extensions list` for a list
         enabled-extensions = [
