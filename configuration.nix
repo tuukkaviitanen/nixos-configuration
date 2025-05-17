@@ -9,7 +9,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
- nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Fix for speakers (but not mic)
   boot.extraModprobeConfig = ''
@@ -88,24 +88,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # Applications
-    brave
-    bitwarden-desktop
-    discord
 
-    # Gnome extensions
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.dash-to-panel  
-    gnomeExtensions.search-light
-    
-    # VS Code
-    (vscode-with-extensions.override {
-    vscodeExtensions = with vscode-extensions; [
-      bbenoist.nix
-      pkief.material-icon-theme
-      rust-lang.rust-analyzer
-    ];
-  })
   ];
 
   virtualisation.docker.enable = true;
