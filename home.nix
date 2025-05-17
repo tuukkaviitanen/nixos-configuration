@@ -17,7 +17,7 @@
       syntaxHighlighting.enable = true;
       shellAliases = {
         r = "sudo nixos-rebuild switch";
-        ru = "sudo nix-channel --update && sudo nixos-rebuild switch --upgrade";
+        ru = "sudo nix flake update && sudo nixos-rebuild switch --upgrade";
       };
       shellInit = "fastfetch\n";
       ohMyZsh = {
