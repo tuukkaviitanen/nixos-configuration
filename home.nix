@@ -57,6 +57,7 @@
         gnomeExtensions.blur-my-shell
         gnomeExtensions.dash-to-panel  
         gnomeExtensions.search-light
+        gnomeExtensions.forge
 
         # VS Code
         (vscode-with-extensions.override {
@@ -93,6 +94,7 @@
           "dash-to-panel@jderose9.github.com"
           "search-light@icedman.github.com"
           "system-monitor@gnome-shell-extensions.gcampax.github.com"
+          "forge@jmmaranan.com"
         ];
       };
       "org/gnome/shell/extensions/dash-to-panel" = {
