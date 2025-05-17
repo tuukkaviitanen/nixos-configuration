@@ -83,6 +83,7 @@
 
     dconf.settings = {
       "org/gnome/desktop/wm/preferences".button-layout = ":minimize,maximize,close";
+      "org/gnome/desktop/wm/keybindings".minimize = [];
       "org/gnome/desktop/interface".show-battery-percentage = true;
       "org/gnome/shell" = {
         # By default, disabled extensions overwrite enabled ones
