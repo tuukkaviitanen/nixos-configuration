@@ -5,12 +5,6 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./home.nix
-    ];
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -102,7 +96,8 @@
     # Gnome extensions
     gnomeExtensions.blur-my-shell
     gnomeExtensions.dash-to-panel  
-
+    gnomeExtensions.search-light
+    
     # VS Code
     (vscode-with-extensions.override {
     vscodeExtensions = with vscode-extensions; [

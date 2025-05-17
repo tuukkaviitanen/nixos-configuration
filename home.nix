@@ -1,13 +1,11 @@
-{ config, pkgs, lib, ... }:
+{   inputs,
+  lib,
+  config,
+  pkgs,
+  home-manager,
+  ... }:
 
-let
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz;
-in
 {
-  imports =
-    [
-      (import "${home-manager}/nixos")
-    ];
 
   # Use global Nix package configurations (including unfree packages)
   home-manager.useGlobalPkgs = true;
@@ -45,12 +43,15 @@ in
   users.defaultUserShell = pkgs.zsh;
 
   home-manager.users.tuukka = { pkgs, ... }: {
-    home.packages = [ ];
+    home = {
+      packages = with pkgs; [
+        fastfetch
+      ];
+      # The state version is required and should stay at the version you
+      # originally installed.
+      stateVersion = "24.11";
+    };
   
-    # The state version is required and should stay at the version you
-    # originally installed.
-    home.stateVersion = "24.11";
-
     programs = {
       git = {
           enable = true;
