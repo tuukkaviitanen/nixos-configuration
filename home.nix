@@ -96,6 +96,7 @@
           "search-light@icedman.github.com"
           "system-monitor@gnome-shell-extensions.gcampax.github.com"
           "forge@jmmaranan.com"
+          "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
         ];
       };
       "org/gnome/shell/extensions/dash-to-panel" = {
