@@ -26,6 +26,10 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Don't wait for the network to come online during boot and save ~5 seconds
+  # Enabling this would be necessary if network is needed during the boot process
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   # Set your time zone.
   time.timeZone = "Europe/Helsinki";
 
