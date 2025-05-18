@@ -106,5 +106,15 @@
         shortcut-search = ["<Alt>s"];
       };
     };
+
+    # https://nix-community.github.io/home-manager/options.xhtml#opt-gtk.enable
+    gtk = {
+      enable = true;
+      cursorTheme = {
+        # https://github.com/ful1e5/Bibata_Cursor
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Classic";
+      };
+    };
   };
 }
