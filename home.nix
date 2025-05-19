@@ -52,6 +52,7 @@
         discord
         fastfetch
         dconf-editor
+        alejandra
         nixd
 
         # Gnome extensions
@@ -66,6 +67,7 @@
             bbenoist.nix
             pkief.material-icon-theme
             rust-lang.rust-analyzer
+            jnoortheen.nix-ide
           ];
         })
       ];
