@@ -1,11 +1,4 @@
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  home-manager,
-  ...
-}: {
+{pkgs, ...}: {
   # Use global Nix package configurations (including unfree packages)
   home-manager.useGlobalPkgs = true;
 
@@ -75,19 +68,18 @@
       vscode = {
         enable = true;
         extensions = with pkgs.vscode-extensions; [
-          bbenoist.nix
           pkief.material-icon-theme
           rust-lang.rust-analyzer
           jnoortheen.nix-ide
         ];
         userSettings = {
-         workbench.iconTheme = "material-icon-theme";
+          workbench.iconTheme = "material-icon-theme";
           nix = {
             serverPath = "nixd";
             enableLanguageServer = true;
             serverSettings = {
               nixd = {
-                formatting.command = [ "alejandra" ];
+                formatting.command = ["alejandra"];
                 options.nixos.expr = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.nixos.options";
               };
             };
