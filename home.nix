@@ -52,6 +52,7 @@
         discord
         fastfetch
         dconf-editor
+        nixd
 
         # Gnome extensions
         gnomeExtensions.blur-my-shell

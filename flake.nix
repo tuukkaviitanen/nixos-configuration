@@ -25,6 +25,7 @@
           inherit system;
           config.allowUnfree = true;
         };
+        inherit inputs;
       };
       modules = [
         ./configuration.nix
