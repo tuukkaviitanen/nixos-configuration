@@ -9,6 +9,7 @@
   # Use global Nix package configurations (including unfree packages)
   home-manager.useGlobalPkgs = true;
 
+  # NixOS programs
   programs = {
     zsh = {
       enable = true;
@@ -58,27 +59,40 @@
         gnomeExtensions.dash-to-panel
         gnomeExtensions.search-light
         gnomeExtensions.forge
-
-        # VS Code
-        (vscode-with-extensions.override {
-          vscodeExtensions = with vscode-extensions; [
-            bbenoist.nix
-            pkief.material-icon-theme
-            rust-lang.rust-analyzer
-            jnoortheen.nix-ide
-          ];
-        })
       ];
       # The state version is required and should stay at the version you
       # originally installed.
       stateVersion = "24.11";
     };
 
+    # Home Manager programs
     programs = {
       git = {
         enable = true;
         userName = "tuukkaviitanen";
         userEmail = "tuukka.viitanen@gmail.com";
+      };
+      vscode = {
+        enable = true;
+        extensions = with pkgs.vscode-extensions; [
+          bbenoist.nix
+          pkief.material-icon-theme
+          rust-lang.rust-analyzer
+          jnoortheen.nix-ide
+        ];
+        userSettings = {
+         workbench.iconTheme = "material-icon-theme";
+          nix = {
+            serverPath = "nixd";
+            enableLanguageServer = true;
+            serverSettings = {
+              nixd = {
+                formatting.command = [ "alejandra" ];
+                options.nixos.expr = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.nixos.options";
+              };
+            };
+          };
+        };
       };
     };
 
