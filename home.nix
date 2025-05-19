@@ -1,12 +1,11 @@
-{   inputs,
+{
+  inputs,
   lib,
   config,
   pkgs,
   home-manager,
-  ... }:
-
-{
-
+  ...
+}: {
   # Use global Nix package configurations (including unfree packages)
   home-manager.useGlobalPkgs = true;
 
@@ -24,7 +23,7 @@
         enable = true;
         theme = "robbyrussell";
         plugins = [
-	        "git"
+          "git"
           "docker"
         ];
       };
@@ -33,17 +32,16 @@
     direnv.enable = true;
   };
 
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tuukka = {
     isNormalUser = true;
     description = "Tuukka Viitanen";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
   users.defaultUserShell = pkgs.zsh;
 
-  home-manager.users.tuukka = { pkgs, ... }: {
+  home-manager.users.tuukka = {pkgs, ...}: {
     home = {
       packages = with pkgs; [
         # Applications
@@ -57,7 +55,7 @@
 
         # Gnome extensions
         gnomeExtensions.blur-my-shell
-        gnomeExtensions.dash-to-panel  
+        gnomeExtensions.dash-to-panel
         gnomeExtensions.search-light
         gnomeExtensions.forge
 
@@ -75,12 +73,12 @@
       # originally installed.
       stateVersion = "24.11";
     };
-  
+
     programs = {
       git = {
-          enable = true;
-          userName  = "tuukkaviitanen";
-          userEmail = "tuukka.viitanen@gmail.com";
+        enable = true;
+        userName = "tuukkaviitanen";
+        userEmail = "tuukka.viitanen@gmail.com";
       };
     };
 

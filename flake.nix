@@ -12,7 +12,12 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    ...
+  } @ inputs: {
     # nixos is the hostname
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
