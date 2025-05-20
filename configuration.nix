@@ -12,7 +12,7 @@
 
   nix = {
     settings.experimental-features = ["nix-command" "flakes"];
-    nixPath = ["nixpgks=${inputs.nixpkgs}"];
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   };
 
   # Fix for speakers (but not mic)
