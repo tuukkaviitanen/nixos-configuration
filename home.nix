@@ -67,10 +67,12 @@
       };
       vscode = {
         enable = true;
+        enableUpdateCheck = false;
         extensions = with pkgs.vscode-extensions; [
           pkief.material-icon-theme
           rust-lang.rust-analyzer
           jnoortheen.nix-ide
+          vscodevim.vim
         ];
         userSettings = {
           workbench.iconTheme = "material-icon-theme";
