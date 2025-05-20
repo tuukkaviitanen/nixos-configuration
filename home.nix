@@ -113,6 +113,10 @@
       "org/gnome/shell/extensions/search-light" = {
         shortcut-search = ["<Alt>s"];
       };
+      # Removes lock screen shortcut from <Super>l, as it conflicts with forge
+      "org.gnome.settings-daemon.plugins.media-keys" = {
+        screensaver = [];
+      };
     };
 
     # https://nix-community.github.io/home-manager/options.xhtml#opt-gtk.enable
