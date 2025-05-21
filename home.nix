@@ -72,7 +72,7 @@
           pkief.material-icon-theme
           rust-lang.rust-analyzer
           jnoortheen.nix-ide
-          vscodevim.vim
+          # vscodevim.vim # If I someday have energy to learn Vim
         ];
         userSettings = {
           workbench.iconTheme = "material-icon-theme";
