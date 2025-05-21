@@ -67,22 +67,24 @@
       };
       vscode = {
         enable = true;
-        enableUpdateCheck = false;
-        extensions = with pkgs.vscode-extensions; [
-          pkief.material-icon-theme
-          rust-lang.rust-analyzer
-          jnoortheen.nix-ide
-          # vscodevim.vim # If I someday have energy to learn Vim
-        ];
-        userSettings = {
-          workbench.iconTheme = "material-icon-theme";
-          nix = {
-            serverPath = "nixd";
-            enableLanguageServer = true;
-            serverSettings = {
-              nixd = {
-                formatting.command = ["alejandra"];
-                options.nixos.expr = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.nixos.options";
+        profiles.default = {
+          enableUpdateCheck = false;
+          extensions = with pkgs.vscode-extensions; [
+            pkief.material-icon-theme
+            rust-lang.rust-analyzer
+            jnoortheen.nix-ide
+            # vscodevim.vim # If I someday have energy to learn Vim
+          ];
+          userSettings = {
+            workbench.iconTheme = "material-icon-theme";
+            nix = {
+              serverPath = "nixd";
+              enableLanguageServer = true;
+              serverSettings = {
+                nixd = {
+                  formatting.command = ["alejandra"];
+                  options.nixos.expr = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.nixos.options";
+                };
               };
             };
           };
