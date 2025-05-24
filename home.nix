@@ -52,6 +52,8 @@
         gnomeExtensions.dash-to-panel
         gnomeExtensions.search-light
         gnomeExtensions.forge
+        gnomeExtensions.system-monitor
+        gnomeExtensions.workspace-indicator
       ];
       # The state version is required and should stay at the version you
       # originally installed.
