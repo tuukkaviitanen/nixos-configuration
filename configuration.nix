@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  # pkgs,
+  pkgs,
   inputs,
   ...
 }: {
@@ -95,8 +95,14 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  # environment.systemPackages = with pkgs; [
-  # ];
+  # environment.
+  environment = {
+    sessionVariables = {
+      LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+    };
+    # systemPackages = with pkgs; [
+    # ];
+  };
 
   virtualisation.docker.enable = true;
 
