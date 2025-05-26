@@ -35,103 +35,119 @@
 
   users.defaultUserShell = pkgs.zsh;
 
-  home-manager.users.tuukka = {pkgs, ...}: {
-    home = {
-      packages = with pkgs; [
-        # Applications
-        brave
-        bitwarden-desktop
-        discord
-        fastfetch
-        dconf-editor
-        alejandra
-        nixd
+  home-manager = {
+    # Backing up dotfiles automatically before replacing them,
+    # as it otherwise needs to be done manually to avoid build errors
+    backupFileExtension = "backup";
+    users.tuukka = {pkgs, ...}: {
+      home = {
+        packages = with pkgs; [
+          # Applications
+          brave
+          bitwarden-desktop
+          discord
+          fastfetch
+          dconf-editor
+          alejandra
+          nixd
 
-        # Gnome extensions
-        gnomeExtensions.blur-my-shell
-        gnomeExtensions.dash-to-panel
-        gnomeExtensions.search-light
-        gnomeExtensions.forge
-        gnomeExtensions.system-monitor
-        gnomeExtensions.workspace-indicator
-      ];
-      # The state version is required and should stay at the version you
-      # originally installed.
-      stateVersion = "24.11";
-    };
-
-    # Home Manager programs
-    programs = {
-      git = {
-        enable = true;
-        userName = "tuukkaviitanen";
-        userEmail = "tuukka.viitanen@gmail.com";
+          # Gnome extensions
+          gnomeExtensions.blur-my-shell
+          gnomeExtensions.dash-to-panel
+          gnomeExtensions.search-light
+          gnomeExtensions.forge
+          gnomeExtensions.system-monitor
+          gnomeExtensions.workspace-indicator
+        ];
+        # The state version is required and should stay at the version you
+        # originally installed.
+        stateVersion = "24.11";
       };
-      vscode = {
-        enable = true;
-        profiles.default = {
-          enableUpdateCheck = false;
-          extensions = with pkgs.vscode-extensions; [
-            pkief.material-icon-theme
-            rust-lang.rust-analyzer
-            jnoortheen.nix-ide
-            # vscodevim.vim # If I someday have energy to learn Vim
-          ];
-          userSettings = {
-            workbench.iconTheme = "material-icon-theme";
-            nix = {
-              serverPath = "nixd";
-              enableLanguageServer = true;
-              serverSettings = {
-                nixd = {
-                  formatting.command = ["alejandra"];
-                  options.nixos.expr = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.nixos.options";
+
+      # Home Manager programs
+      programs = {
+        git = {
+          enable = true;
+          userName = "tuukkaviitanen";
+          userEmail = "tuukka.viitanen@gmail.com";
+        };
+        vscode = {
+          enable = true;
+          mutableExtensionsDir = false;
+          profiles.default = {
+            enableUpdateCheck = false;
+            extensions = with pkgs.vscode-extensions; [
+              pkief.material-icon-theme
+              rust-lang.rust-analyzer
+              jnoortheen.nix-ide
+              ms-azuretools.vscode-docker
+              esbenp.prettier-vscode
+              dbaeumer.vscode-eslint
+              golang.go
+              streetsidesoftware.code-spell-checker
+              tamasfe.even-better-toml
+              waderyan.gitblame
+              mhutchie.git-graph
+              prisma.prisma
+              redhat.vscode-yaml
+              # vscodevim.vim # If I someday have energy to learn Vim
+            ];
+            userSettings = {
+              workbench.iconTheme = "material-icon-theme";
+              nix = {
+                serverPath = "nixd";
+                enableLanguageServer = true;
+                serverSettings = {
+                  nixd = {
+                    formatting.command = ["alejandra"];
+                    options.nixos.expr = "(builtins.getFlake \"/etc/nixos\").nixosConfigurations.nixos.options";
+                  };
                 };
               };
             };
           };
         };
       };
-    };
 
-    dconf.settings = {
-      "org/gnome/desktop/wm/preferences".button-layout = ":minimize,maximize,close";
-      "org/gnome/desktop/wm/keybindings".minimize = [];
-      "org/gnome/desktop/interface".show-battery-percentage = true;
-      "org/gnome/shell" = {
-        # By default, disabled extensions overwrite enabled ones
-        disable-user-extensions = false;
-        disabled-extensions = [];
-        # `gnome-extensions list` for a list
-        enabled-extensions = [
-          "blur-my-shell@aunetx"
-          "dash-to-panel@jderose9.github.com"
-          "search-light@icedman.github.com"
-          "system-monitor@gnome-shell-extensions.gcampax.github.com"
-          "forge@jmmaranan.com"
-          "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
-        ];
+      dconf.settings = {
+        "org/gnome/desktop/wm/preferences".button-layout = ":minimize,maximize,close";
+        "org/gnome/desktop/wm/keybindings".minimize = [];
+        "org/gnome/desktop/interface".show-battery-percentage = true;
+        "org/gnome/shell" = {
+          # By default, disabled extensions overwrite enabled ones
+          disable-user-extensions = false;
+          disabled-extensions = [];
+          # `gnome-extensions list` for a list
+          enabled-extensions = [
+            "blur-my-shell@aunetx"
+            "dash-to-panel@jderose9.github.com"
+            "search-light@icedman.github.com"
+            "system-monitor@gnome-shell-extensions.gcampax.github.com"
+            "forge@jmmaranan.com"
+            "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+          ];
+        };
+        "org/gnome/shell/extensions/dash-to-panel" = {
+          trans-use-custom-opacity = true;
+          trans-panel-opacity = 0.0;
+        };
+        "org/gnome/shell/extensions/search-light" = {
+          shortcut-search = ["<Alt>s"];
+        };
+        # Removes lock screen shortcut from <Super>l, as it conflicts with forge
+        "org.gnome.settings-daemon.plugins.media-keys" = {
+          screensaver = [];
+        };
       };
-      "org/gnome/shell/extensions/dash-to-panel" = {
-        trans-use-custom-opacity = true;
-        trans-panel-opacity = 0.0;
-      };
-      "org/gnome/shell/extensions/search-light" = {
-        shortcut-search = ["<Alt>s"];
-      };
-      # Removes lock screen shortcut from <Super>l, as it conflicts with forge
-      "org.gnome.settings-daemon.plugins.media-keys" = {
-        screensaver = [];
-      };
-    };
 
-    # https://nix-community.github.io/home-manager/options.xhtml#opt-gtk.enable
-    gtk = {
-      enable = true;
-      cursorTheme = {
-        # https://github.com/ful1e5/Bibata_Cursor
-        package = pkgs.bibata-cursors;
-        name = "Bibata-Modern-Classic";
+      # https://nix-community.github.io/home-manager/options.xhtml#opt-gtk.enable
+      gtk = {
+        enable = true;
+        cursorTheme = {
+          # https://github.com/ful1e5/Bibata_Cursor
+          package = pkgs.bibata-cursors;
+          name = "Bibata-Modern-Classic";
+        };
       };
     };
   };
