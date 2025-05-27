@@ -140,14 +140,23 @@
           shortcut-search = ["<Alt>s"];
         };
         # Removes lock screen shortcut from <Super>l, as it conflicts with forge
-        "org.gnome.settings-daemon.plugins.media-keys" = {
+        "org/gnome/settings-daemon/plugins/media-keys" = {
           screensaver = [];
         };
-        "org.gnome.desktop.background" = {
+        "org/gnome/desktop/background" = {
           picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/amber-l.jxl";
           picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/amber-d.jxl";
           primary-color = "#ff7800";
           secondary-color = "#000000";
+        };
+        "org/gnome/shell/extensions/arcmenu" = {
+          distro-icon = 22;
+          menu-button-icon = "Distro_Icon";
+          custom-menu-button-icon-size = 40.0;
+          menu-button-fg-color = pkgs.lib.gvariant.mkTuple [
+            true
+            "rgb(53,132,228)"
+          ];
         };
       };
 
