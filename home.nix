@@ -58,6 +58,7 @@
           gnomeExtensions.forge
           gnomeExtensions.system-monitor
           gnomeExtensions.workspace-indicator
+          gnomeExtensions.arcmenu
         ];
         # The state version is required and should stay at the version you
         # originally installed.
@@ -125,6 +126,7 @@
             "system-monitor@gnome-shell-extensions.gcampax.github.com"
             "forge@jmmaranan.com"
             "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+            "arcmenu@arcmenu.com"
           ];
         };
         "org/gnome/shell/extensions/dash-to-panel" = {
@@ -137,6 +139,12 @@
         # Removes lock screen shortcut from <Super>l, as it conflicts with forge
         "org.gnome.settings-daemon.plugins.media-keys" = {
           screensaver = [];
+        };
+        "org.gnome.desktop.background" = {
+          picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/amber-l.jxl";
+          picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/amber-d.jxl";
+          primary-color = "#ff7800";
+          secondary-color = "#000000";
         };
       };
 
