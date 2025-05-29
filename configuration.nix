@@ -3,12 +3,17 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   pkgs,
+  # pkgs-unstable,
   inputs,
   ...
 }: {
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
   nix = {
     settings.experimental-features = ["nix-command" "flakes"];
@@ -79,6 +84,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    # package = pkgs-unstable.pipewire;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
