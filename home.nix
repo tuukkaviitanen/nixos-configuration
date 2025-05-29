@@ -108,6 +108,15 @@
             };
           };
         };
+        # If I want to switch to chromium
+        # chromium = {
+        #   enable = true;
+        #   extensions = [
+        #     "eokjikchkppnkdipbiggnmlkahcdkikp" # Color picker - geco
+        #     "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
+        #     "fmkadmapgofadopljbjfkapdkoienihi" # React dev tools
+        #   ];
+        # };
       };
 
       dconf.settings = {
