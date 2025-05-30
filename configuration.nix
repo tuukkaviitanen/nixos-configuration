@@ -13,17 +13,16 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+    # Fix for speakers (but not mic)
+    extraModprobeConfig = ''
+      options snd-intel-dspcfg dsp_driver=1
+    '';
   };
 
   nix = {
     settings.experimental-features = ["nix-command" "flakes"];
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   };
-
-  # Fix for speakers (but not mic)
-  boot.extraModprobeConfig = ''
-    options snd-intel-dspcfg dsp_driver=1
-  '';
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -81,8 +80,10 @@
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
     pulse.enable = true;
     # package = pkgs-unstable.pipewire;
     # If you want to use JACK applications, uncomment this
