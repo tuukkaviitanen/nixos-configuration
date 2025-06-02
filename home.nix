@@ -92,6 +92,7 @@
               mhutchie.git-graph
               prisma.prisma
               redhat.vscode-yaml
+              humao.rest-client
               # vscodevim.vim # If I someday have energy to learn Vim
             ];
             userSettings = {
