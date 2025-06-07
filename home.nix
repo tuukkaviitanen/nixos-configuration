@@ -25,25 +25,25 @@
     };
     dconf.enable = true; # Enables dconf configuration in home.nix
     direnv.enable = true;
-    firefox = {
-      enable = true;
-      nativeMessagingHosts.packages = [pkgs.firefoxpwa];
-      policies = {
-        ExtensionSettings = with builtins; let
-          extension = shortId: uuid: {
-            name = uuid;
-            value = {
-              install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
-              installation_mode = "normal_installed";
-            };
-          };
-        in
-          listToAttrs [
-            (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
-            (extension "pwas-for-firefox" "firefoxpwa@filips.si")
-          ];
-      };
-    };
+    # firefox = {
+    #   enable = true;
+    #   nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
+    #   policies = {
+    #     ExtensionSettings = with builtins; let
+    #       extension = shortId: uuid: {
+    #         name = uuid;
+    #         value = {
+    #           install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+    #           installation_mode = "normal_installed";
+    #         };
+    #       };
+    #     in
+    #       listToAttrs [
+    #         (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
+    #         (extension "pwas-for-firefox" "firefoxpwa@filips.si")
+    #       ];
+    #   };
+    # };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -63,7 +63,6 @@
       home = {
         packages = with pkgs; [
           # Applications
-          brave
           bitwarden-desktop
           discord
           fastfetch
@@ -131,14 +130,15 @@
           };
         };
         # If I want to switch to chromium
-        # chromium = {
-        #   enable = true;
-        #   extensions = [
-        #     "eokjikchkppnkdipbiggnmlkahcdkikp" # Color picker - geco
-        #     "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
-        #     "fmkadmapgofadopljbjfkapdkoienihi" # React dev tools
-        #   ];
-        # };
+        chromium = {
+          enable = true;
+          package = pkgs.brave;
+          extensions = [
+            "eokjikchkppnkdipbiggnmlkahcdkikp" # Color picker - geco
+            "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
+            "fmkadmapgofadopljbjfkapdkoienihi" # React dev tools
+          ];
+        };
       };
 
       dconf.settings = {
