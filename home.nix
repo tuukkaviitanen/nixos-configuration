@@ -49,8 +49,9 @@
           discord
           fastfetch
           dconf-editor
-          alejandra
-          nixd
+          alejandra # Nix formatter
+          nixd # Nix language server
+          thunderbird # Email client
 
           # Gnome extensions
           gnomeExtensions.blur-my-shell

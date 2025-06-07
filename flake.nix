@@ -27,11 +27,16 @@
           # Refer to the `system` parameter from
           # the outer scope recursively
           inherit system;
+          # Allow unfree packages from the unstable channel
           config.allowUnfree = true;
         };
         inherit inputs;
       };
       modules = [
+        {
+          # Allow unfree packages from the default channel
+          nixpkgs.config.allowUnfree = true;
+        }
         ./configuration.nix
         ./hardware-configuration.nix
         ./home.nix
