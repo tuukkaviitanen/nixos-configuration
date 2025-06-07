@@ -108,6 +108,7 @@
       excludePackages = [pkgs.geary];
     };
     # systemPackages = with pkgs; [
+    #   firefoxpwa
     # ];
   };
 
