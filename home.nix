@@ -111,6 +111,23 @@
             };
           };
         };
+        firefox = {
+          enable = true;
+          policies = {
+            ExtensionSettings = with builtins; let
+              extension = shortId: uuid: {
+                name = uuid;
+                value = {
+                  install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+                  installation_mode = "normal_installed";
+                };
+              };
+            in
+              listToAttrs [
+                (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
+              ];
+          };
+        };
         # If I want to switch to chromium
         # chromium = {
         #   enable = true;
