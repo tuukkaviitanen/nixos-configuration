@@ -5,6 +5,7 @@
   # pkgs,
   # pkgs-unstable,
   # inputs,
+  config,
   ...
 }: {
   imports = [
@@ -17,18 +18,28 @@
 
   services.xserver.videoDrivers = ["nvidia"];
 
+  # Failed fixes for external screen being blank
+  # boot.kernelParams = ["nvidia-drm.modeset=1"];
+  # boot.kernelParams = ["i915.force_probe=46a6"];
+  # boot.extraModprobeConfig = ''
+  #   options bbswitch load_state=-1 unload_state=1 nvidia-drm
+  # '';
+  # boot.kernelParams = ["module_blacklist=i915"];
+  # boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+
   hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
     open = true;
     modesetting.enable = true;
     prime = {
       sync.enable = true;
-
-      # integrated
-      intelBusId = "PCI:0:2:0";
-
-      # dedicated
-      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:2:0"; # Integrated GPU
+      nvidiaBusId = "PCI:1:0:0"; # Dedicated GPU
     };
+    nvidiaSettings = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    # forceFullCompositionPipeline = true;
   };
 
   # These should stay as the NixOS version first installed on the system
