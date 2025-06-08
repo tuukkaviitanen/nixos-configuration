@@ -18,30 +18,56 @@
     ...
   } @ inputs: {
     # nixos is the hostname
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
-      # The `specialArgs` parameter passes the
-      # non-default nixpkgs instances to other nix modules
-      specialArgs = {
-        pkgs-unstable = import nixpkgs-unstable {
-          # Refer to the `system` parameter from
-          # the outer scope recursively
-          inherit system;
-          # Allow unfree packages from the unstable channel
-          config.allowUnfree = true;
+    nixosConfigurations = {
+      nixos = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        # The `specialArgs` parameter passes the
+        # non-default nixpkgs instances to other nix modules
+        specialArgs = {
+          pkgs-unstable = import nixpkgs-unstable {
+            # Refer to the `system` parameter from
+            # the outer scope recursively
+            inherit system;
+            # Allow unfree packages from the unstable channel
+            config.allowUnfree = true;
+          };
+          inherit inputs;
         };
-        inherit inputs;
+        modules = [
+          {
+            # Allow unfree packages from the default channel
+            nixpkgs.config.allowUnfree = true;
+          }
+          ./configuration.nix
+          ./hardware-configuration.nix
+          ./home.nix
+          inputs.home-manager.nixosModules.default
+        ];
       };
-      modules = [
-        {
-          # Allow unfree packages from the default channel
-          nixpkgs.config.allowUnfree = true;
-        }
-        ./configuration.nix
-        ./hardware-configuration.nix
-        ./home.nix
-        inputs.home-manager.nixosModules.default
-      ];
     };
+
+    thinkpad-t14s = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        # The `specialArgs` parameter passes the
+        # non-default nixpkgs instances to other nix modules
+        specialArgs = {
+          pkgs-unstable = import nixpkgs-unstable {
+            # Refer to the `system` parameter from
+            # the outer scope recursively
+            inherit system;
+            # Allow unfree packages from the unstable channel
+            config.allowUnfree = true;
+          };
+          inherit inputs;
+        };
+        modules = [
+          {
+            # Allow unfree packages from the default channel
+            nixpkgs.config.allowUnfree = true;
+          }
+          ./devices/thinkpad-t14s/configuration.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
   };
 }
