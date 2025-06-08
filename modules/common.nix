@@ -217,6 +217,7 @@
             ];
             userSettings = {
               workbench.iconTheme = "material-icon-theme";
+              editor.formatOnSave = true;
               nix = {
                 serverPath = "nixd";
                 enableLanguageServer = true;
