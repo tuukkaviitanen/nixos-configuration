@@ -25,25 +25,6 @@
     };
     dconf.enable = true; # Enables dconf configuration in home.nix
     direnv.enable = true;
-    # firefox = {
-    #   enable = true;
-    #   nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
-    #   policies = {
-    #     ExtensionSettings = with builtins; let
-    #       extension = shortId: uuid: {
-    #         name = uuid;
-    #         value = {
-    #           install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
-    #           installation_mode = "normal_installed";
-    #         };
-    #       };
-    #     in
-    #       listToAttrs [
-    #         (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
-    #         (extension "pwas-for-firefox" "firefoxpwa@filips.si")
-    #       ];
-    #   };
-    # };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -69,7 +50,6 @@
           dconf-editor
           alejandra # Nix formatter
           nixd # Nix language server
-          thunderbird # Email client
 
           # Gnome extensions
           gnomeExtensions.blur-my-shell

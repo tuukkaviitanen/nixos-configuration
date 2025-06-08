@@ -107,9 +107,6 @@
     gnome = {
       excludePackages = [pkgs.geary];
     };
-    # systemPackages = with pkgs; [
-    #   firefoxpwa
-    # ];
   };
 
   virtualisation.docker.enable = true;
