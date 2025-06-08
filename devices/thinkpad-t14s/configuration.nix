@@ -23,12 +23,6 @@
 
   networking.hostName = "thinkpad-t14s";
 
-  # Device specific shell aliases
-  programs.zsh.shellAliases = {
-    r = "sudo nixos-rebuild switch --flake ~/System";
-    ru = "sudo flake update --flake ~/System && sudo nixos-rebuild switch --flake ~/System --upgrade";
-  };
-
   # This should stay as the NixOS version first installed
   system.stateVersion = "24.11";
 }
