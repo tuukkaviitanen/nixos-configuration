@@ -129,7 +129,7 @@
       # Common shell aliases
       shellAliases = {
         r = "sudo nixos-rebuild switch --flake ~/System";
-        ru = "sudo flake update --flake ~/System && sudo nixos-rebuild switch --flake ~/System --upgrade";
+        ru = "sudo nix flake update --flake ~/System && sudo nixos-rebuild switch --flake ~/System --upgrade";
         gc = "nix-collect-garbage --delete-old && sudo nix-collect-garbage --delete-old && sudo /run/current-system/bin/switch-to-configuration boot";
       };
       shellInit = "fastfetch\n";
