@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   pkgs,
-  # pkgs-unstable,
   inputs,
   ...
 }: {
@@ -92,13 +91,14 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  # environment.
   environment = {
     gnome = {
       excludePackages = [pkgs.geary];
     };
+    # List packages installed in system profile. To search, run:
+    # $ nix search wget
+    # systemPackages = with pkgs; [
+    # ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -119,9 +119,6 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  # Use global Nix package configurations (including unfree packages)
-  home-manager.useGlobalPkgs = true;
 
   # NixOS programs
   programs = {
@@ -153,15 +150,17 @@
     isNormalUser = true;
     description = "Tuukka Viitanen";
     extraGroups = ["networkmanager" "wheel"];
+    shell = pkgs.zsh;
   };
 
-  users.defaultUserShell = pkgs.zsh;
+  # Use global Nix package configurations (including unfree packages)
+  home-manager.useGlobalPkgs = true;
 
   home-manager = {
     # Backing up dotfiles automatically before replacing them,
     # as it otherwise needs to be done manually to avoid build errors
     backupFileExtension = "backup";
-    users.tuukka = {pkgs, ...}: {
+    users.tuukka = {
       home = {
         packages = with pkgs; [
           # Applications
@@ -181,9 +180,6 @@
           gnomeExtensions.workspace-indicator
           gnomeExtensions.arcmenu
         ];
-        # The state version is required and should stay at the version you
-        # originally installed.
-        stateVersion = "24.11";
       };
 
       # Home Manager programs
@@ -200,20 +196,8 @@
             enableUpdateCheck = false;
             extensions = with pkgs.vscode-extensions; [
               pkief.material-icon-theme
-              rust-lang.rust-analyzer
               jnoortheen.nix-ide
-              ms-azuretools.vscode-docker
-              esbenp.prettier-vscode
-              dbaeumer.vscode-eslint
-              golang.go
               streetsidesoftware.code-spell-checker
-              tamasfe.even-better-toml
-              waderyan.gitblame
-              mhutchie.git-graph
-              prisma.prisma
-              redhat.vscode-yaml
-              humao.rest-client
-              # vscodevim.vim # If I someday have energy to learn Vim
             ];
             userSettings = {
               workbench.iconTheme = "material-icon-theme";
@@ -231,14 +215,12 @@
             };
           };
         };
-        # If I want to switch to chromium
         chromium = {
           enable = true;
           package = pkgs.brave;
           extensions = [
             "eokjikchkppnkdipbiggnmlkahcdkikp" # Color picker - geco
             "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
-            "fmkadmapgofadopljbjfkapdkoienihi" # React dev tools
           ];
         };
       };
@@ -246,7 +228,6 @@
       dconf.settings = {
         "org/gnome/desktop/wm/preferences".button-layout = ":minimize,maximize,close";
         "org/gnome/desktop/wm/keybindings".minimize = [];
-        "org/gnome/desktop/interface".show-battery-percentage = true;
         "org/gnome/shell" = {
           # By default, disabled extensions overwrite enabled ones
           disable-user-extensions = false;
@@ -281,6 +262,10 @@
           picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/amber-d.jxl";
           primary-color = "#ff7800";
           secondary-color = "#000000";
+        };
+        "org/gnome/desktop/interface" = {
+          color-scheme = "prefer-dark";
+          show-battery-percentage = true;
         };
         "org/gnome/shell/extensions/arcmenu" = {
           distro-icon = 22;

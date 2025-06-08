@@ -8,9 +8,9 @@
   ...
 }: {
   imports = [
-      ./hardware-configuration.nix
-      ../../modules/common.nix
-      ../../modules/dev.nix
+    ./hardware-configuration.nix
+    ../../modules/common.nix
+    ../../modules/dev.nix
   ];
 
   # Bootloader.
@@ -23,6 +23,7 @@
 
   networking.hostName = "thinkpad-t14s";
 
-  # This should stay as the NixOS version first installed
+  # These should stay as the NixOS version first installed on the system
   system.stateVersion = "24.11";
+  home-manager.users.tuukka.home.stateVersion = "24.11";
 }

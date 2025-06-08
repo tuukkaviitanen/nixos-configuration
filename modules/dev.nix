@@ -1,12 +1,6 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-{
-  pkgs,
-  # pkgs-unstable,
-  inputs,
-  ...
-}: {
+# Development specific configurations
+# Additions to common.nix
+{pkgs, ...}: {
   environment = {
     sessionVariables = {
       LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
@@ -19,6 +13,25 @@
     extraGroups = ["docker"];
   };
 
-  # NixOS programs
   programs.zsh.ohMyZsh.plugins = ["docker"];
+
+  home-manager.users.tuukka.programs = {
+    chromium.extensions = [
+      "fmkadmapgofadopljbjfkapdkoienihi" # React dev tools
+    ];
+    vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
+      rust-lang.rust-analyzer
+      ms-azuretools.vscode-docker
+      esbenp.prettier-vscode
+      dbaeumer.vscode-eslint
+      golang.go
+      tamasfe.even-better-toml
+      waderyan.gitblame
+      mhutchie.git-graph
+      prisma.prisma
+      redhat.vscode-yaml
+      humao.rest-client
+      # vscodevim.vim # If I someday have energy to learn Vim
+    ];
+  };
 }
