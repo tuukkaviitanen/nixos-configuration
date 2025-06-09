@@ -1,11 +1,6 @@
 # Gaming specific configurations
 # Additions to common.nix
 {pkgs, ...}: {
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
   programs = {
     steam = {
       enable = true;
