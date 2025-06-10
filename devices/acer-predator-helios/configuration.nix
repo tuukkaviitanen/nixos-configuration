@@ -21,6 +21,8 @@
     enable32Bit = true;
   };
 
+  # boot.kernelPackages = pkgs.linuxPackages_zen;
+
   services.xserver.videoDrivers = [
     # "modesetting" # Use with offload
     "nvidia"
@@ -43,8 +45,8 @@
   # services.xserver.displayManager.gdm.wayland = false;
 
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
-    open = true;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_535;
+    open = false;
     modesetting.enable = true;
     prime = {
       sync.enable = true;
