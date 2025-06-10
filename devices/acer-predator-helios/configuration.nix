@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  # pkgs,
+  pkgs,
   # pkgs-unstable,
   # inputs,
   config,
@@ -21,7 +21,10 @@
     enable32Bit = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [
+    # "modesetting" # Use with offload
+    "nvidia"
+  ];
 
   # Failed fixes for external screen being blank
   # boot.kernelParams = ["nvidia-drm.modeset=1"];
@@ -33,8 +36,6 @@
   # boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
   # boot.initrd.kernelModules = ["nvidia" "nvidia-drm" "nvidia-modeset"];
   # boot = {
-  #   # TODO: confirm this works
-  #   # https://forums.developer.nvidia.com/t/550-54-14-cannot-create-sg-table-for-nvkmskapimemory-spammed-when-launching-chrome-on-wayland/284775/26
   #   initrd.kernelModules = ["nvidia" "i915" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
   #   # extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
   #   kernelParams = ["nvidia-drm.fbdev=1"];
@@ -47,6 +48,10 @@
     modesetting.enable = true;
     prime = {
       sync.enable = true;
+      # offload = {
+      #   enable = true;
+      #   enableOffloadCmd = true;
+      # };
       intelBusId = "PCI:0:2:0"; # Integrated GPU
       nvidiaBusId = "PCI:1:0:0"; # Dedicated GPU
     };
@@ -60,6 +65,11 @@
 
     # forceFullCompositionPipeline = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    nvtopPackages.nvidia
+    vulkan-tools
+  ];
 
   # These should stay as the NixOS version first installed on the system
   system.stateVersion = "25.05";

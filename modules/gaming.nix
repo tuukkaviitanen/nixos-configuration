@@ -17,6 +17,7 @@
   # Installing Proton GE installation running the `protonup` command
   environment.systemPackages = with pkgs; [
     protonup
+    mangohud
   ];
 
   environment.sessionVariables = {
