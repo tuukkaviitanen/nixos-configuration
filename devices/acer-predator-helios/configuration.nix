@@ -24,7 +24,7 @@
   # boot.kernelPackages = pkgs.linuxPackages_zen;
 
   services.xserver.videoDrivers = [
-    # "modesetting" # Use with offload
+    "modesetting" # Use with offload
     "nvidia"
   ];
 
@@ -34,7 +34,7 @@
   # boot.extraModprobeConfig = ''
   #   options bbswitch load_state=-1 unload_state=1 nvidia-drm
   # '';
-  # boot.kernelParams = ["module_blacklist=i915"];
+  # boot.kernelParams = ["module_blacklist=nvidia_uvm"];
   # boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
   # boot.initrd.kernelModules = ["nvidia" "nvidia-drm" "nvidia-modeset"];
   # boot = {
@@ -44,16 +44,22 @@
   # };
   # services.xserver.displayManager.gdm.wayland = false;
 
+  # nixpkgs.config.nvidia.acceptLicense = true;
+
   hardware.nvidia = {
+    # Newer drivers break the dedicated GPU
+    # Older drivers don't recognize external monitors at all
     package = config.boot.kernelPackages.nvidiaPackages.legacy_535;
     open = false;
     modesetting.enable = true;
     prime = {
-      sync.enable = true;
-      # offload = {
-      #   enable = true;
-      #   enableOffloadCmd = true;
-      # };
+      # sync.enable = true;
+      # Dedicated GPU requires OFFLOAD to work
+      # nvidia-offload %command% needs to be set to steam games
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
       intelBusId = "PCI:0:2:0"; # Integrated GPU
       nvidiaBusId = "PCI:1:0:0"; # Dedicated GPU
     };
