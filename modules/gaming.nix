@@ -10,6 +10,12 @@
       # localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
     };
 
+    # For VR (Doesn't utilize Nvidia GPU)
+    # alvr = {
+    #   enable = true;
+    #   openFirewall = true;
+    # };
+
     # Allows the usage of `gamemoderun %command%` and `gamescope %command%` in Steam games
     gamemode.enable = true;
   };
