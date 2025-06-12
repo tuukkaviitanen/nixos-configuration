@@ -18,6 +18,7 @@
   environment.systemPackages = with pkgs; [
     protonup
     mangohud
+    lutris
   ];
 
   environment.sessionVariables = {
