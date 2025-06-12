@@ -58,7 +58,7 @@
       # nvidia-offload %command% needs to be set to steam games
       offload = {
         enable = true;
-        enableOffloadCmd = true;
+        # enableOffloadCmd = true; # Not needed as the env variables are always enabled
       };
       intelBusId = "PCI:0:2:0"; # Integrated GPU
       nvidiaBusId = "PCI:1:0:0"; # Dedicated GPU
@@ -74,10 +74,19 @@
     # forceFullCompositionPipeline = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    nvtopPackages.nvidia
-    vulkan-tools
-  ];
+  environment = {
+    variables = {
+      # Always enable nvidia offload
+      __NV_PRIME_RENDER_OFFLOAD = 1;
+      __NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      __VK_LAYER_NV_optimus = "NVIDIA_only";
+    };
+    systemPackages = with pkgs; [
+      nvtopPackages.nvidia
+      vulkan-tools
+    ];
+  };
 
   # These should stay as the NixOS version first installed on the system
   system.stateVersion = "25.05";
