@@ -4,7 +4,7 @@
 {
   pkgs,
   # pkgs-unstable,
-  # inputs,
+  globals,
   config,
   ...
 }: {
@@ -90,5 +90,5 @@
 
   # These should stay as the NixOS version first installed on the system
   system.stateVersion = "25.05";
-  home-manager.users.tuukka.home.stateVersion = "25.05";
+  home-manager.users.${globals.username}.home.stateVersion = "25.05";
 }

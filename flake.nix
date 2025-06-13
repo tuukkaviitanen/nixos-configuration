@@ -16,7 +16,12 @@
     nixpkgs,
     nixpkgs-unstable,
     ...
-  } @ inputs: {
+  } @ inputs: let
+    globals = {
+      username = "tuukka";
+      browser = "brave";
+    };
+  in {
     nixosConfigurations = {
       thinkpad-t14s = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
@@ -31,6 +36,7 @@
             config.allowUnfree = true;
           };
           inherit inputs;
+          inherit globals;
         };
         modules = [
           {
@@ -54,6 +60,7 @@
             config.allowUnfree = true;
           };
           inherit inputs;
+          inherit globals;
         };
         modules = [
           {

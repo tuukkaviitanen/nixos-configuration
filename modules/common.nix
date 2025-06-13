@@ -4,6 +4,7 @@
 {
   pkgs,
   inputs,
+  globals,
   ...
 }: {
   # Bootloader.
@@ -146,7 +147,7 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.tuukka = {
+  users.users.${globals.username} = {
     isNormalUser = true;
     description = "Tuukka Viitanen";
     extraGroups = ["networkmanager" "wheel"];
@@ -160,7 +161,7 @@
     # Backing up dotfiles automatically before replacing them,
     # as it otherwise needs to be done manually to avoid build errors
     backupFileExtension = "backup";
-    users.tuukka = {
+    users.${globals.username} = {
       home = {
         packages = with pkgs; [
           # Applications
@@ -217,7 +218,7 @@
         };
         chromium = {
           enable = true;
-          package = pkgs.brave;
+          package = pkgs.${globals.browser};
           extensions = [
             "eokjikchkppnkdipbiggnmlkahcdkikp" # Color picker - geco
             "nngceckbapebfimnlniiiahkandclblb" # Bitwarden

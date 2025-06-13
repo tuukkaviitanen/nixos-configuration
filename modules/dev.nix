@@ -1,6 +1,10 @@
 # Development specific configurations
 # Additions to common.nix
-{pkgs, ...}: {
+{
+  pkgs,
+  globals,
+  ...
+}: {
   environment = {
     sessionVariables = {
       LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
@@ -9,13 +13,13 @@
 
   virtualisation.docker.enable = true;
 
-  users.users.tuukka = {
+  users.users.${globals.username} = {
     extraGroups = ["docker"];
   };
 
   programs.zsh.ohMyZsh.plugins = ["docker"];
 
-  home-manager.users.tuukka.programs = {
+  home-manager.users.${globals.username}.programs = {
     chromium.extensions = [
       "fmkadmapgofadopljbjfkapdkoienihi" # React dev tools
     ];
