@@ -12,6 +12,7 @@
     ./hardware-configuration.nix
     ../../modules/common.nix
     ../../modules/gaming.nix
+    ../../modules/gnome.nix
   ];
 
   networking.hostName = "acer-predator-helios";

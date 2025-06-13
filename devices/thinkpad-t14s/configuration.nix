@@ -11,6 +11,7 @@
     ./hardware-configuration.nix
     ../../modules/common.nix
     ../../modules/dev.nix
+    ../../modules/gnome.nix
   ];
 
   # Bootloader.
