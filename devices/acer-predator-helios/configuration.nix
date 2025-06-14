@@ -61,8 +61,8 @@
         enable = true;
         # enableOffloadCmd = true; # Not needed as the env variables are always enabled
       };
-      intelBusId = "PCI:0:2:0"; # Integrated GPU
-      nvidiaBusId = "PCI:1:0:0"; # Dedicated GPU
+      intelBusId = "PCI:0@0:2:0"; # Integrated GPU
+      nvidiaBusId = "PCI:1@0:0:0"; # Dedicated GPU
     };
     nvidiaSettings = true;
     powerManagement = {
