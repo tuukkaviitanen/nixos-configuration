@@ -159,7 +159,6 @@
           bitwarden-desktop
           discord
           fastfetch
-          dconf-editor
           alejandra # Nix formatter
           nixd # Nix language server
         ];

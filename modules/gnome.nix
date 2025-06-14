@@ -16,14 +16,16 @@
   home-manager = {
     users.${globals.username} = {
       home = {
-        packages = with pkgs.gnomeExtensions; [
-          blur-my-shell
-          dash-to-panel
-          search-light
-          forge
-          system-monitor
-          workspace-indicator
-          arcmenu
+        packages = with pkgs; [
+          gnomeExtensions.blur-my-shell
+          gnomeExtensions.dash-to-panel
+          gnomeExtensions.search-light
+          gnomeExtensions.forge
+          gnomeExtensions.system-monitor
+          gnomeExtensions.workspace-indicator
+          gnomeExtensions.arcmenu
+
+          dconf-editor
         ];
       };
 
