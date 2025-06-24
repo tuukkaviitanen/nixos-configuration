@@ -73,6 +73,9 @@
           "org/gnome/desktop/interface" = {
             color-scheme = "prefer-dark";
             show-battery-percentage = true;
+            font-name = "DepartureMono Nerd Font 11";
+            document-font-name = "DepartureMono Nerd Font 11";
+            monospace-font-name = "DepartureMono Nerd Font 11";
           };
           "org/gnome/shell/extensions/arcmenu" = {
             distro-icon = 22;

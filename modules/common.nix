@@ -66,6 +66,8 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  fonts.packages = [pkgs.nerd-fonts.departure-mono];
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -155,7 +157,7 @@
     # Backing up dotfiles automatically before replacing them,
     # as it otherwise needs to be done manually to avoid build errors
     backupFileExtension = "backup";
-    users.tuukka = {
+    users.${globals.username} = {
       home = {
         packages = with pkgs; [
           # Applications
