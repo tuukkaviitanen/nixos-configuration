@@ -92,9 +92,6 @@
     # $ nix search wget
     # systemPackages = with pkgs; [
     # ];
-    variables = {
-      SSH_AUTH_SOCK = "/home/${globals.username}/.bitwarden-ssh-agent.sock";
-    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -128,7 +125,10 @@
         ru = "sudo nix flake update --flake ~/System && sudo nixos-rebuild switch --flake ~/System --upgrade";
         gc = "nix-collect-garbage --delete-old && sudo nix-collect-garbage --delete-old && sudo /run/current-system/bin/switch-to-configuration boot";
       };
-      shellInit = "fastfetch\n";
+      shellInit = "
+      export SSH_AUTH_SOCK=/home/${globals.username}/.bitwarden-ssh-agent.sock
+      fastfetch
+      ";
       ohMyZsh = {
         enable = true;
         theme = "robbyrussell";
