@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   globals,
   ...
 }: {
@@ -16,7 +17,7 @@
   home-manager = {
     users.${globals.username} = {
       home = {
-        packages = with pkgs; [
+        packages = with pkgs-unstable; [
           gnomeExtensions.blur-my-shell
           gnomeExtensions.dash-to-panel
           gnomeExtensions.search-light
