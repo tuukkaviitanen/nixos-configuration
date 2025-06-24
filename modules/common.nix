@@ -155,7 +155,7 @@
     # Backing up dotfiles automatically before replacing them,
     # as it otherwise needs to be done manually to avoid build errors
     backupFileExtension = "backup";
-    users.${globals.username} = {
+    users.tuukka = {
       home = {
         packages = with pkgs; [
           # Applications
@@ -173,6 +173,11 @@
           enable = true;
           userName = "tuukkaviitanen";
           userEmail = "tuukka.viitanen@gmail.com";
+          signing = {
+            format = "ssh";
+            signByDefault = true;
+            key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKcUj2ZvUr6h9rB9/1kruE2o7qlEhDlFHnMqZ0y3tgEl";
+          };
         };
         vscode = {
           enable = true;
