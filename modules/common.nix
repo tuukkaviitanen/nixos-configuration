@@ -92,6 +92,9 @@
     # $ nix search wget
     # systemPackages = with pkgs; [
     # ];
+    variables = {
+      SSH_AUTH_SOCK = "/home/${globals.username}/.bitwarden-ssh-agent.sock";
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
