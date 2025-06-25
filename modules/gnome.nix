@@ -72,11 +72,12 @@
           in {
             picture-uri = "file://${wallpaper}";
             picture-uri-dark = "file://${wallpaper}";
-            primary-color = "#ff7800";
+            primary-color = "#ff4268";
             secondary-color = "#000000";
           };
           "org/gnome/desktop/interface" = {
             color-scheme = "prefer-dark";
+            accent-color = "red";
             show-battery-percentage = true;
             font-name = "DepartureMono Nerd Font 11";
             document-font-name = "DepartureMono Nerd Font 11";
