@@ -64,9 +64,14 @@
           "org/gnome/settings-daemon/plugins/media-keys" = {
             screensaver = [];
           };
-          "org/gnome/desktop/background" = {
-            picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/amber-l.jxl";
-            picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/amber-d.jxl";
+          "org/gnome/desktop/background" = let
+            wallpaper = pkgs.fetchurl {
+              url = "https://backiee.com/static/wallpapers/1920x1080/364837.jpg";
+              hash = "sha256-vvyOrLh1LkJ0pgkjfdIPgYFDEvSA74pbAobmh7A0EA8=";
+            };
+          in {
+            picture-uri = "file://${wallpaper}";
+            picture-uri-dark = "file://${wallpaper}";
             primary-color = "#ff7800";
             secondary-color = "#000000";
           };
