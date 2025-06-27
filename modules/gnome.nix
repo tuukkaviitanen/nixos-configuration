@@ -79,9 +79,9 @@
             color-scheme = "prefer-dark";
             accent-color = "red";
             show-battery-percentage = true;
-            font-name = "DepartureMono Nerd Font 11";
-            document-font-name = "DepartureMono Nerd Font 11";
-            monospace-font-name = "DepartureMono Nerd Font 11";
+            font-name = "${globals.font} 11";
+            document-font-name = "${globals.font} 11";
+            monospace-font-name = "${globals.font} 11";
           };
           "org/gnome/shell/extensions/arcmenu" = {
             distro-icon = 22;

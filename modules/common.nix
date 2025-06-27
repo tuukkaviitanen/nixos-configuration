@@ -193,7 +193,16 @@
             ];
             userSettings = {
               workbench.iconTheme = "material-icon-theme";
-              editor.formatOnSave = true;
+              editor = {
+                formatOnSave = true;
+                fontFamily = globals.font;
+              };
+              "[javascript]" = {
+                editor.defaultFormatter = "esbenp.prettier-vscode";
+              };
+              "[typescript]" = {
+                editor.defaultFormatter = "esbenp.prettier-vscode";
+              };
               nix = {
                 serverPath = "nixd";
                 enableLanguageServer = true;

@@ -26,6 +26,7 @@
     globals = {
       username = "tuukka";
       browser = "brave";
+      font = "DepartureMono Nerd Font";
     };
   in {
     nixosConfigurations = {
