@@ -7,7 +7,6 @@
   globals,
   ...
 }: {
-  # Bootloader.
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -28,6 +27,8 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  # Required for Proton VPN to work
+  networking.firewall.checkReversePath = false;
 
   # Don't wait for the network to come online during boot and save ~5 seconds
   # Enabling this would be necessary if network is needed during the boot process
@@ -166,6 +167,8 @@
           fastfetch
           alejandra # Nix formatter
           nixd # Nix language server
+          protonmail-desktop
+          protonvpn-gui
         ];
       };
 
