@@ -47,7 +47,7 @@
               "system-monitor@gnome-shell-extensions.gcampax.github.com"
               "forge@jmmaranan.com"
               "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
-              "arcmenu@arcmenu.com"
+              # "arcmenu@arcmenu.com"
             ];
           };
           "org/gnome/shell/extensions/dash-to-panel" = {
@@ -57,8 +57,11 @@
               {"CMN-0x00000000":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}
             '';
           };
+          "org/gnome/mutter" = {
+            overlay-key = ""; # Disables the Activity view from opening with the Super-key
+          };
           "org/gnome/shell/extensions/search-light" = {
-            shortcut-search = ["<Alt>s"];
+            shortcut-search = ["Super_L"];
           };
           # Removes lock screen shortcut from <Super>l, as it conflicts with forge
           "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -83,15 +86,16 @@
             document-font-name = "${globals.font} 11";
             monospace-font-name = "${globals.font} 11";
           };
-          "org/gnome/shell/extensions/arcmenu" = {
-            distro-icon = 22;
-            menu-button-icon = "Distro_Icon";
-            custom-menu-button-icon-size = 40.0;
-            menu-button-fg-color = pkgs.lib.gvariant.mkTuple [
-              true
-              "rgb(53,132,228)"
-            ];
-          };
+          # Arc menu config with NixOs logo
+          # "org/gnome/shell/extensions/arcmenu" = {
+          #   distro-icon = 22;
+          #   menu-button-icon = "Distro_Icon";
+          #   custom-menu-button-icon-size = 40.0;
+          #   menu-button-fg-color = pkgs.lib.gvariant.mkTuple [
+          #     true
+          #     "rgb(53,132,228)"
+          #   ];
+          # };
         };
       };
 
