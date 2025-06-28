@@ -24,7 +24,7 @@
           gnomeExtensions.forge
           gnomeExtensions.system-monitor
           gnomeExtensions.workspace-indicator
-          gnomeExtensions.arcmenu
+          # gnomeExtensions.arcmenu
 
           dconf-editor
         ];
