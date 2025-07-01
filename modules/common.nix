@@ -169,6 +169,8 @@
           nixd # Nix language server
           protonmail-desktop
           protonvpn-gui
+          zip
+          unzip
         ];
       };
 
