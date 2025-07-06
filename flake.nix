@@ -25,7 +25,7 @@
   } @ inputs: let
     globals = {
       username = "tuukka";
-      browser = "brave";
+      browser = "chromium";
       font = "DepartureMono Nerd Font";
     };
   in {
