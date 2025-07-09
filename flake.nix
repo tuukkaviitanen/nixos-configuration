@@ -25,7 +25,8 @@
   } @ inputs: let
     globals = {
       username = "tuukka";
-      browser = "chromium";
+      browser = "google-chrome";
+      browser-executable = "google-chrome-stable";
       font = "DepartureMono Nerd Font";
     };
   in {

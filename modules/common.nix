@@ -143,7 +143,6 @@
     direnv.enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${globals.username} = {
     isNormalUser = true;
     description = "Tuukka Viitanen";
@@ -235,7 +234,7 @@
       xdg.desktopEntries = {
         youtube-music = {
           name = "Youtube Music";
-          exec = "${globals.browser} --app=https://music.youtube.com";
+          exec = "${globals.browser-executable} --app=https://music.youtube.com";
           settings = {
             StartupWMClass = "music.youtube.com";
           };
@@ -246,46 +245,13 @@
         };
         whatsapp = {
           name = "Whatsapp";
-          exec = "${globals.browser} --app=https://web.whatsapp.com";
+          exec = "${globals.browser-executable} --app=https://web.whatsapp.com";
           settings = {
             StartupWMClass = "web.whatsapp.com";
           };
           icon = pkgs.fetchurl {
             url = "https://static.whatsapp.net/rsrc.php/v4/yP/r/rYZqPCBaG70.png";
             hash = "sha256-OJlYGrz+2bQLcgi7vKi9v+OullWYDb9V8E3snLMwnyc=";
-          };
-        };
-        outlook = {
-          name = "Outlook";
-          exec = "${globals.browser} --app=https://outlook.live.com";
-          settings = {
-            StartupWMClass = "outlook.live.com";
-          };
-          icon = pkgs.fetchurl {
-            url = "https://outlook.live.com/mail/favicon.ico";
-            hash = "sha256-412Ut2iU1uypb/WxoS2U3+c0he88UstbQ5W+j/rBy0U=";
-          };
-        };
-        teams = {
-          name = "Teams";
-          exec = "${globals.browser} --app=https://teams.live.com/v2";
-          settings = {
-            StartupWMClass = "teams.live.com";
-          };
-          icon = pkgs.fetchurl {
-            url = "https://statics.teams.cdn.live.net/evergreen-assets/icons/microsoft_teams_logo_refresh.ico";
-            hash = "sha256-LVqme4rOE6lP0JMWeH48mroq2sdntuKrdpoiZaKtIPA=";
-          };
-        };
-        one-note = {
-          name = "OneNote";
-          exec = "${globals.browser} --app=https://www.onenote.com/notebooks";
-          settings = {
-            StartupWMClass = "www.onenote.com";
-          };
-          icon = pkgs.fetchurl {
-            url = "https://site-cdn.onenote.net/161901140450_Images/onenoteicon-256.png";
-            hash = "sha256-TNnBy8eANPwwn1KjfOW1lUeb8YT4Yh25VPnTkpLfJ/0=";
           };
         };
       };
