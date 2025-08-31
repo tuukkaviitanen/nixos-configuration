@@ -34,7 +34,10 @@
         enable = true;
         settings = {
           "org/gnome/desktop/wm/preferences".button-layout = ":minimize,maximize,close";
-          "org/gnome/desktop/wm/keybindings".minimize = [];
+          "org/gnome/desktop/wm/keybindings" = {
+            activate-window-menu = [""];
+            minimize = [];
+          };
           "org/gnome/shell" = {
             # By default, disabled extensions overwrite enabled ones
             disable-user-extensions = false;
@@ -61,7 +64,7 @@
           #   overlay-key = ""; # Disables the Activity view from opening with the Super-key
           # };
           "org/gnome/shell/extensions/search-light" = {
-            shortcut-search = ["<Alt>s"];
+            shortcut-search = ["<Alt>Space"];
           };
           # Removes lock screen shortcut from <Super>l, as it conflicts with forge
           "org/gnome/settings-daemon/plugins/media-keys" = {
