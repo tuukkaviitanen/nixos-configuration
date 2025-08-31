@@ -19,23 +19,28 @@
 
   programs.zsh.ohMyZsh.plugins = ["docker"];
 
-  home-manager.users.${globals.username}.programs = {
-    chromium.extensions = [
-      "fmkadmapgofadopljbjfkapdkoienihi" # React dev tools
+  home-manager.users.${globals.username} = {
+    home.packages = with pkgs; [
+      devbox
     ];
-    vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
-      rust-lang.rust-analyzer
-      ms-azuretools.vscode-docker
-      esbenp.prettier-vscode
-      dbaeumer.vscode-eslint
-      golang.go
-      tamasfe.even-better-toml
-      waderyan.gitblame
-      mhutchie.git-graph
-      prisma.prisma
-      redhat.vscode-yaml
-      humao.rest-client
-      # vscodevim.vim # If I someday have energy to learn Vim
-    ];
+    programs = {
+      chromium.extensions = [
+        "fmkadmapgofadopljbjfkapdkoienihi" # React dev tools
+      ];
+      vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
+        rust-lang.rust-analyzer
+        ms-azuretools.vscode-docker
+        esbenp.prettier-vscode
+        dbaeumer.vscode-eslint
+        golang.go
+        tamasfe.even-better-toml
+        waderyan.gitblame
+        mhutchie.git-graph
+        prisma.prisma
+        redhat.vscode-yaml
+        humao.rest-client
+        # vscodevim.vim # If I someday have energy to learn Vim
+      ];
+    };
   };
 }
