@@ -55,6 +55,9 @@
               # "arcmenu@arcmenu.com"
             ];
           };
+          "org/gnome/shell/extensions/dash-to-dock" = {
+            dock-fixed = true;
+          };
           # "org/gnome/shell/extensions/dash-to-panel" = {
           #   trans-use-custom-opacity = true;
           #   trans-panel-opacity = 0.0;
